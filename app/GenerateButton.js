@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import style from './GenerateButton.module.scss';
 
 export default function GenerateButton() {
   const [color, setColor] = useState('#123fee');
@@ -9,7 +10,16 @@ export default function GenerateButton() {
 
   return (
     <div>
-      <button onClick={() => console.log('Hello World')}>Generate</button>
+      <button
+        className={style.generateButton}
+        style={{ backgroundColor: color }}
+        onClick={() => {
+          setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
+          router.refresh();
+        }}
+      >
+        Generate
+      </button>
     </div>
   );
 }
